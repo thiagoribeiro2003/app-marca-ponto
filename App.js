@@ -1,22 +1,30 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
+import { useState, useEffect } from "react";
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+
 export default function App() {
   return (
-    <View style={styles.titulo}>
-      <Text>App 2 - Marcação de Ponto</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <ScrollView contentContainerStyle={estilos.contentContainer}>
+        <SafeAreaView style={estilos.safeContainer}>
+          <Text style={estilos.titulo}>App 2 - Marcação de Ponto</Text>
+        </SafeAreaView>
+      </ScrollView>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
+const estilos = StyleSheet.create({
+  contentContainer: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingVertical: 1,
+  },
+  safeContainer: {
+    flex: 1,
+    backgroundColor: "#f4f4f4",
+  },
+  titulo: {
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: 50,
   },
 });
