@@ -7,6 +7,7 @@ export default function App() {
       <ScrollView contentContainerStyle={estilos.contentContainer}>
         <SafeAreaView style={estilos.safeContainer}>
           <Text style={estilos.titulo}>App 2 - Marcação de Ponto</Text>
+          <View></View>
         </SafeAreaView>
       </ScrollView>
     </>
@@ -25,6 +26,6 @@ const estilos = StyleSheet.create({
   titulo: {
     fontSize: 20,
     textAlign: "center",
-    marginTop: 50,
+    marginTop: 70,
   },
 });
