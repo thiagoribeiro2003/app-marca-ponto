@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, SafeAreaView, Alert } from "react-native";
 
-export default function App() {
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location"
+
+export default function () {
   return (
     <>
       <ScrollView contentContainerStyle={estilos.contentContainer}>
         <SafeAreaView style={estilos.safeContainer}>
           <Text style={estilos.titulo}>App 2 - Marcação de Ponto</Text>
-          <View></View>
+          <View style={estilos.mapa}>
+      
+          </View>
         </SafeAreaView>
       </ScrollView>
     </>
