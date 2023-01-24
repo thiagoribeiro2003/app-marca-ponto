@@ -26,6 +26,6 @@ const estilos = StyleSheet.create({
   titulo: {
     fontSize: 20,
     textAlign: "center",
-    marginTop: 70,
+    marginTop: 60,
   },
 });
