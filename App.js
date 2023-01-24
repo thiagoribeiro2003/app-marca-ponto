@@ -7,8 +7,6 @@ import {
   SafeAreaView,
   Alert,
   Pressable,
-  BUtton,
-  Button,
 } from "react-native";
 
 import MapView, { Marker } from "react-native-maps";
@@ -24,6 +22,23 @@ export default function () {
 
   const [minhaLocalizacao, setMinhaLocalizacao] = useState(null);
 
+  useEffect(() => {
+    async function obterLocalizacao() {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+
+      let localizacaoAtual = await Location.getCurrentPositionAsync({});
+
+      setMinhaLocalizacao();
+    }
+  }, []);
+
+  console.log(minhaLocalizacao);
+
+  const regiaoInicial = {
+    // Estado de SP
+    minhaLocalizacao,
+  };
+
   return (
     <>
       <ScrollView contentContainerStyle={estilos.contentContainer}>
@@ -31,7 +46,7 @@ export default function () {
           <Text style={estilos.titulo}>App 2 - Marcação de Ponto</Text>
           <View style={estilos.mapa}>
             <MapView
-              style={{ width: 371, height: 200 }}
+              style={{ width: "100%", height: 200 }}
               liteMode={false}
               mapType="standard"
               userInterfaceStyle="dark"
@@ -84,15 +99,16 @@ const estilos = StyleSheet.create({
   titulo: {
     fontSize: 20,
     textAlign: "center",
-    marginTop: 60,
+    marginTop: 80,
   },
   mapa: {
+    // bloco em sobre o mapa
     marginTop: 50,
-    width: "90%",
     height: 200,
+    width: "100%",
     backgroundColor: "#d3d3d3",
     justifyContent: "center",
-    marginLeft: 20,
+    borderRadius: 10,
   },
   data: {
     fontSize: 20,
