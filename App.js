@@ -7,9 +7,16 @@ import * as Location from "expo-location";
 export default function () {
 
 
-    var dia = new Date().getDate();
-      var mes = new Date().getMonth() + 1;
-      var ano = new Date().getFullYear();
+  var dia = new Date().getDate();
+  var mes = new Date().getMonth() + 1;
+  var ano = new Date().getFullYear();
+  var hora = new Date().getHours(); 
+  var min = new Date().getMinutes(); 
+  var sec = new Date().getSeconds(); 
+
+  
+
+      
 
   const [minhaLocalizacao, setMinhaLocalizacao] = useState(null)
 
@@ -30,10 +37,8 @@ export default function () {
             </MapView>
           </View>
 
-
-            <Text style={estilos.data}> { dia + '/' + mes + '/' + ano} </Text>
-
-
+            <Text style={estilos.data}> {hora + ':' + min + ' ' + '-' + ' ' + dia + '/' + mes + '/' + ano} </Text>
+            
           <Pressable style={({ pressed }) => [
             {
               backgroundColor: pressed ? "gray" : "#f4f4f4",
@@ -70,7 +75,7 @@ const estilos = StyleSheet.create({
     marginTop: 50,
     width: "90%",
     height: 200,
-    backgroundColor: "lightblue",
+    backgroundColor: "#d3d3d3",
     justifyContent: "center",
     marginLeft: 20,
   },
