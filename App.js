@@ -1,25 +1,28 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View, ScrollView, SafeAreaView, Alert, Pressable, BUtton, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Alert,
+  Pressable,
+  BUtton,
+  Button,
+} from "react-native";
 
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 export default function () {
-
-
   var dia = new Date().getDate();
   var mes = new Date().getMonth() + 1;
   var ano = new Date().getFullYear();
-  var hora = new Date().getHours(); 
-  var min = new Date().getMinutes(); 
-  var sec = new Date().getSeconds(); 
+  var hora = new Date().getHours();
+  var min = new Date().getMinutes();
+  var sec = new Date().getSeconds();
 
-  
-
-      
-
-  const [minhaLocalizacao, setMinhaLocalizacao] = useState(null)
-
+  const [minhaLocalizacao, setMinhaLocalizacao] = useState(null);
 
   return (
     <>
@@ -27,30 +30,42 @@ export default function () {
         <SafeAreaView style={estilos.safeContainer}>
           <Text style={estilos.titulo}>App 2 - Marcação de Ponto</Text>
           <View style={estilos.mapa}>
-            <MapView 
-              style={{width: 371, height: 200}}
+            <MapView
+              style={{ width: 371, height: 200 }}
               liteMode={false}
               mapType="standard"
               userInterfaceStyle="dark"
-              //onPress={}
-            >
-            </MapView>
+            ></MapView>
           </View>
 
-            <Text style={estilos.data}> {hora + ':' + min + ' ' + '-' + ' ' + dia + '/' + mes + '/' + ano} </Text>
-            
-          <Pressable style={({ pressed }) => [
-            {
-              backgroundColor: pressed ? "gray" : "#f4f4f4",
-            },
-            estilos.botaoPonto
-          ]}
-            onPress={() => {Alert.alert('Registro', 'Ponto registrado com sucesso!')}}
+          <Text style={estilos.data}>
+            {" "}
+            {hora +
+              ":" +
+              min +
+              " " +
+              "-" +
+              " " +
+              dia +
+              "/" +
+              mes +
+              "/" +
+              ano}{" "}
+          </Text>
+
+          <Pressable
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "gray" : "#f4f4f4",
+              },
+              estilos.botaoPonto,
+            ]}
+            onPress={() => {
+              Alert.alert("Registro", "Ponto registrado com sucesso!");
+            }}
           >
             <Text style={estilos.textoBotao}>Marcar ponto</Text>
           </Pressable>
-
-
         </SafeAreaView>
       </ScrollView>
     </>
@@ -82,7 +97,7 @@ const estilos = StyleSheet.create({
   data: {
     fontSize: 20,
     textAlign: "center",
-    marginTop: "5%"
+    marginTop: "5%",
   },
   botaoPonto: {
     marginTop: 20,
