@@ -18,25 +18,42 @@ export default function () {
   var ano = new Date().getFullYear();
   var hora = new Date().getHours();
   var min = new Date().getMinutes();
-  var sec = new Date().getSeconds();
 
   const [minhaLocalizacao, setMinhaLocalizacao] = useState(null);
 
   useEffect(() => {
     async function obterLocalizacao() {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      /* Acessandp o status da requisição de permissão de uso */
+      const { status } = Location.requestForegroundPermissionsAsync();
 
+      /* Acessando os dados de geolocalização */
       let localizacaoAtual = await Location.getCurrentPositionAsync({});
 
-      setMinhaLocalizacao();
+      /* Adicionando os dados ao state */
+      setMinhaLocalizacao(localizacaoAtual);
     }
+
+    obterLocalizacao();
   }, []);
 
   console.log(minhaLocalizacao);
 
   const regiaoInicial = {
-    // Estado de SP
-    minhaLocalizacao,
+    latitudeDelta: 10,
+    longitudeDelta: 10,
+    latitude: -23.533773,
+    longitude: -46.65529,
+  };
+
+  const [localizou, setLocalizou] = useState();
+
+  const marcarLocal = (event) => {
+    setLocalizou({
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: minhaLocalizacao.coords.latitude,
+      longitude: minhaLocalizacao.coords.longitude,
+    });
   };
 
   return (
@@ -50,22 +67,21 @@ export default function () {
               liteMode={false}
               mapType="standard"
               userInterfaceStyle="dark"
-            ></MapView>
+              region={localizou ?? regiaoInicial}
+              onPress={marcarLocal}
+            >
+              {localizou && (
+                <Marker
+                  coordinate={localizou}
+                  title="Sua localização!"
+                  onPress={(e) => console.log(e.nativeEvent)}
+                />
+              )}
+            </MapView>
           </View>
 
           <Text style={estilos.data}>
-            {" "}
-            {hora +
-              ":" +
-              min +
-              " " +
-              "-" +
-              " " +
-              dia +
-              "/" +
-              mes +
-              "/" +
-              ano}{" "}
+            {hora + ":" + min + " " + "-" + " " + dia + "/" + mes + "/" + ano}
           </Text>
 
           <Pressable
